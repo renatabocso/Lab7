@@ -5,7 +5,7 @@ namespace Bocso_Renata_Lab7;
 
 public partial class ListEntryPage : ContentPage
 {
-    private object _selectedItem;
+    private ShopList SelectedItem;
 	public ListEntryPage()
 	{
 		InitializeComponent();
@@ -19,7 +19,10 @@ public partial class ListEntryPage : ContentPage
 
     async void OnDeleteItemClicked(object sender, EventArgs e)
     {
-        var selectedItem = _selectedItem;
+        if(SelectedItem != null)
+        {
+            await App.Database.DeleteShopListAsync((ShopList)SelectedItem);
+        }
     }
 
     async void OnShopListAddedClicked(object sender, EventArgs e)
@@ -33,7 +36,7 @@ public partial class ListEntryPage : ContentPage
     {
         if (e.SelectedItem != null)
         {
-            _selectedItem = e.SelectedItem;
+            //_selectedItem = e.SelectedItem;
             await Navigation.PushAsync(new ListPage
             {
                 BindingContext = e.SelectedItem as ShopList

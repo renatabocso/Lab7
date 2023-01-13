@@ -8,16 +8,21 @@
  Clicked="OnShopListAddedClicked" />
     </ContentPage.ToolbarItems>
     <StackLayout>
-    <ListView x:Name="listView"
+        <ListView x:Name="listView"
  Margin="20"
- ItemSelected="OnListViewItemSelected">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Description}"
- Detail="{Binding Date}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    <Button Text="Delete Item" Clicked="OnDeleteItemClicked" />
+ ItemSelected="OnListViewItemSelected" SelectedItem="{Binding SelectedItem}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Text="{Binding Description}" />
+                                <Button Text="Delete Item" Clicked="OnDeleteItemClicked"/>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>
